@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using XLua;
-using Utils = Wxy.Utils.Utils;
-
+using Wxy.Core;
 /// <summary>
 /// 启动lua的虚拟机
 /// 没有做方法缓存
@@ -54,7 +53,7 @@ public class xLuaMgr : UnitySingleBase<xLuaMgr>
     private byte[] ReLoadLuaFilePath(ref string filePath)
     {
         string t = LUA_SCRIPT_PATH + filePath + ".lua";
-        string t2 = Utils.ReplaceDotWithSlashExceptLast(t);
+        string t2 = Wxy.Core.Utils.ReplaceDotWithSlashExceptLast(t);
         if (!File.Exists(t2))
         {
             Debug.LogWarning(t2 + "<<重定向失败");

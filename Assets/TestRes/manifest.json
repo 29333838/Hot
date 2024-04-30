@@ -1,0 +1,64 @@
+{
+  "version": "2024.04.30.16.40.16",
+  "bundleList": [
+    {
+      "name": "abres",
+      "md5Num": "81316b832942563b1ed084230916b3a3",
+      "assetStrs": [
+        "Assets/ABRes/ttt.shader"
+      ],
+      "depStrs": [],
+      "size": 0
+    },
+    {
+      "name": "lua",
+      "md5Num": "69338f8af32d1a5898b07fc39608eb06",
+      "assetStrs": [
+        "Assets/ABRes/Lua/Test.lua.txt"
+      ],
+      "depStrs": [],
+      "size": 0
+    },
+    {
+      "name": "prefab",
+      "md5Num": "a2eb4e90cc32b206fa7348e4a37e1cf4",
+      "assetStrs": [
+        "Assets/ABRes/Prefab/Test.prefab"
+      ],
+      "depStrs": [
+        "test2"
+      ],
+      "size": 0
+    },
+    {
+      "name": "shader",
+      "md5Num": "c77b4be1a9475220bf1b6cf1291efadc",
+      "assetStrs": [
+        "Assets/ABRes/Shader/shader_test.shader"
+      ],
+      "depStrs": [],
+      "size": 0
+    },
+    {
+      "name": "test1",
+      "md5Num": "905994141d3156d8dd2d13fd8bec4eb4",
+      "assetStrs": [
+        "Assets/ABRes/Test/Test1/Shader2.shader"
+      ],
+      "depStrs": [],
+      "size": 0
+    },
+    {
+      "name": "test2",
+      "md5Num": "edf6c96ad710e4c08f0eb99e5eff7580",
+      "assetStrs": [
+        "Assets/ABRes/Test/Test1/Test2/Shader3.shader",
+        "Assets/ABRes/Test/Test1/Test2/ttt.mat"
+      ],
+      "depStrs": [],
+      "size": 0
+    }
+  ],
+  "name": "wxy_test",
+  "hideFlags": 0
+}

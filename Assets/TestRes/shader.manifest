@@ -1,0 +1,20 @@
+ManifestFileVersion: 0
+CRC: 4241264571
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 84379cf1f2a65b39004bacca6d84a0e2
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 0df1dec30b5d061d422d3e6493d27647
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 84379cf1f2a65b39004bacca6d84a0e2
+HashAppended: 0
+ClassTypes:
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/ABRes/Shader/shader_test.shader
+Dependencies: []

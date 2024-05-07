@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SocialPlatforms;
@@ -17,8 +18,6 @@ namespace Wxy.Res
         Local,
         Bundle
     }
-
-
     /// <summary>
     /// 资源加载模块
     /// 调试模式本地bundle
@@ -34,21 +33,25 @@ namespace Wxy.Res
     {
         private ResCore _resCore;
         private ResNetCore _resNetCore;
-        [SerializeField] private ResMode _resMode = ResMode.Local;
+        [SerializeField] private ResMode _resMode;
 
         public void Awake()
         {
+#if !UNITY_EDITOR
+            _resMode = ResMode.Bundle;
+#else
+            _resMode = AssetDatabase.LoadAssetAtPath<ResLoadMode>("Assets/Scripts/Res/ResLoadMode.asset").resMode;
+#endif
+            
+            
             _resCore = new ResCore(_resMode);
-            // _resNetCore = new ResNetCore();
         }
 
         public Object LoadAsset(string objFilePath, Type type) => _resCore.LoadAsset(objFilePath, type);
         public T LoadAsset<T>(string objFilePath) where T : Object => (T)_resCore.LoadAsset(objFilePath, typeof(T));
         public void UnLoadAsset(string objFilePath) => _resCore.UnLoadAsset(objFilePath);
-
         public void GC(double maxUseSecond = 10, bool unloadAllLoadedObjects = true) =>
             _resCore.GC(maxUseSecond, unloadAllLoadedObjects);
-
         public void ShowInfo() => _resCore.ShowInfo();
     }
 }

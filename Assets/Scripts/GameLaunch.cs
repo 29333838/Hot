@@ -16,6 +16,26 @@ public class GameLaunch : MonoBehaviour
     void Start()
     {
         _resMgr = this.AddComponent<ResMgr>();
-       // _resMgr.TryUpdateLocalABFromServer();
-    }   
+        // Instantiate(_resMgr.LoadAsset<GameObject>("Assets/ABRes/Prefab/Test.prefab"));
+        // _resMgr.TryUpdateLocalABFromServer();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            _resMgr.UnLoadAsset(("Assets/ABRes/Prefab/Test.prefab"));
+            // _resMgr.ShowInfo();
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            _resMgr.GC();
+            // _resMgr.ShowInfo();
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Instantiate(_resMgr.LoadAsset<GameObject>(("Assets/ABRes/Prefab/Test.prefab")));
+            // _resMgr.ShowInfo();
+        }
+    }
 }

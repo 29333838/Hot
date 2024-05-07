@@ -76,19 +76,14 @@ namespace Wxy.Core
         /// <returns></returns>
         public static string GetNearestFolder(string assetPath)
         {
-            string folderPath = Path.GetDirectoryName(assetPath);
-            string folderName = Path.GetFileName(folderPath);
-            return folderName;
-        }
-        /// <summary>
-        /// 得到时间戳
-        /// </summary>
-        /// <returns></returns>
-        public static string GetTimeStamp()
-        {
-            DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-            dateTime = dateTime.AddTicks((long)DateTime.UtcNow.Ticks);
-            return (dateTime - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds.ToString(CultureInfo.InvariantCulture);
+            var str = assetPath.Split("/");
+            StringBuilder sb = new StringBuilder();
+            if (str.Length >= 1) sb.Append(str[0]);
+            for (int i = 1; i < str.Length-1; i++)
+            {
+                sb.Append("_" + str[i]);
+            }
+            return sb.ToString();
         }
     }
 }

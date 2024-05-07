@@ -1,64 +1,70 @@
 {
-  "version": "2024.04.30.16.40.16",
+  "version": "2024.05.06.16.04.34",
   "bundleList": [
     {
-      "name": "abres",
-      "md5Num": "81316b832942563b1ed084230916b3a3",
+      "name": "assets_abres",
+      "md5Num": "36b23e8a0a4d3e1974243951724b51ea",
+      "size": 1398,
+      "subFilePath": "Assets/TestRes/assets_abres",
       "assetStrs": [
         "Assets/ABRes/ttt.shader"
       ],
-      "depStrs": [],
-      "size": 0
+      "depStrs": []
     },
     {
-      "name": "lua",
-      "md5Num": "69338f8af32d1a5898b07fc39608eb06",
+      "name": "assets_abres_lua",
+      "md5Num": "88c895f27e87f85b154f91b3ebfe8702",
+      "size": 159,
+      "subFilePath": "Assets/TestRes/assets_abres_lua",
       "assetStrs": [
         "Assets/ABRes/Lua/Test.lua.txt"
       ],
-      "depStrs": [],
-      "size": 0
+      "depStrs": []
     },
     {
-      "name": "prefab",
-      "md5Num": "a2eb4e90cc32b206fa7348e4a37e1cf4",
+      "name": "assets_abres_prefab",
+      "md5Num": "361eafc0443a1fc65142cc242573655d",
+      "size": 3011,
+      "subFilePath": "Assets/TestRes/assets_abres_prefab",
       "assetStrs": [
         "Assets/ABRes/Prefab/Test.prefab"
       ],
       "depStrs": [
-        "test2"
-      ],
-      "size": 0
+        "assets_abres_test_test1_test2"
+      ]
     },
     {
-      "name": "shader",
-      "md5Num": "c77b4be1a9475220bf1b6cf1291efadc",
+      "name": "assets_abres_shader",
+      "md5Num": "3e1aa0d6b97fa6bacbae1dc80442903f",
+      "size": 1406,
+      "subFilePath": "Assets/TestRes/assets_abres_shader",
       "assetStrs": [
         "Assets/ABRes/Shader/shader_test.shader"
       ],
-      "depStrs": [],
-      "size": 0
+      "depStrs": []
     },
     {
-      "name": "test1",
-      "md5Num": "905994141d3156d8dd2d13fd8bec4eb4",
+      "name": "assets_abres_test_test1",
+      "md5Num": "a60eb57dbae779ab87d86f960311050a",
+      "size": 1402,
+      "subFilePath": "Assets/TestRes/assets_abres_test_test1",
       "assetStrs": [
         "Assets/ABRes/Test/Test1/Shader2.shader"
       ],
-      "depStrs": [],
-      "size": 0
+      "depStrs": []
     },
     {
-      "name": "test2",
-      "md5Num": "edf6c96ad710e4c08f0eb99e5eff7580",
+      "name": "assets_abres_test_test1_test2",
+      "md5Num": "61a56c3510f21ee30c8753c766fe2c74",
+      "size": 3584,
+      "subFilePath": "Assets/TestRes/assets_abres_test_test1_test2",
       "assetStrs": [
         "Assets/ABRes/Test/Test1/Test2/Shader3.shader",
         "Assets/ABRes/Test/Test1/Test2/ttt.mat"
       ],
-      "depStrs": [],
-      "size": 0
+      "depStrs": []
     }
   ],
-  "name": "wxy_test",
+  "name": "wxy_bundle",
   "hideFlags": 0
 }

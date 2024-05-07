@@ -338,8 +338,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0e454fe477d534daefe5236d4b77e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bundlePath: D:\projects\unity_projects\local\HotRenewal\AssetBundles
-  txt: {fileID: 0}
 --- !u!4 &1383606713
 Transform:
   m_ObjectHideFlags: 0

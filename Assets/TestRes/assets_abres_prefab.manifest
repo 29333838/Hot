@@ -1,0 +1,33 @@
+ManifestFileVersion: 0
+CRC: 2352953693
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 49d839d60652ea68b87bf4ce856ee3c4
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 48f9e47804cc6149eb45c38c55466448
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 49d839d60652ea68b87bf4ce856ee3c4
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/ABRes/Prefab/Test.prefab
+Dependencies:
+- D:/projects/unity_projects/local/HotRenewal/Assets/TestRes/assets_abres_test_test1_test2

@@ -1,0 +1,23 @@
+ManifestFileVersion: 0
+CRC: 1400346872
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: ce962e63124524704fcc46bc5a5a1a7e
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5e762ccb57c4caaabbb5a4199ac82c23
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: ce962e63124524704fcc46bc5a5a1a7e
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/ABRes/Test/Test1/Test2/Shader3.shader
+- Assets/ABRes/Test/Test1/Test2/ttt.mat
+Dependencies: []

@@ -1,23 +1,23 @@
 ManifestFileVersion: 0
-CRC: 2045237112
+CRC: 1882094625
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: abres
+      Name: assets_abres
       Dependencies: {}
     Info_1:
-      Name: lua
+      Name: assets_abres_lua
       Dependencies: {}
     Info_2:
-      Name: prefab
+      Name: assets_abres_prefab
       Dependencies:
-        Dependency_0: test2
+        Dependency_0: assets_abres_test_test1_test2
     Info_3:
-      Name: shader
+      Name: assets_abres_shader
       Dependencies: {}
     Info_4:
-      Name: test1
+      Name: assets_abres_test_test1
       Dependencies: {}
     Info_5:
-      Name: test2
+      Name: assets_abres_test_test1_test2
       Dependencies: {}

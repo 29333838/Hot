@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Config;
+using JetBrains.Annotations;
 using UnityEngine;
 using Wxy.Res;
 using Object = UnityEngine.Object;
@@ -14,109 +16,93 @@ namespace Wxy.Res
     /// </summary>
     public class Bundle
     {
-        private AssetBundleManifest _manifest;
         private AssetBundle _assetBundle;
-        private string _filePath;
+        public List<Bundle> depBundleList = new();
+        private Dictionary<string, Object> _resCacheDic = new();
         private ResCore _resCore;
-        public bool isLoaded;
+        public bool isRoot;
         private int _ref;
-        private Dictionary<string, Bundle> _depBundleDic = new();
-        private bool isRoot;
-        private Dictionary<string, Object> _resDic = new();
-
-        public Bundle(AssetBundleManifest manifest, string filePath, ResCore resCore)
+        public bool isLoaded => _assetBundle != null;
+        public ManifestBundle bundleCfg;
+        public int Ref => _ref;
+        public Bundle( ManifestBundle bundleCfg, ResCore resCore)
         {
-            this._manifest = manifest;
-            this._filePath = filePath;
+            this.bundleCfg = bundleCfg;
             this._resCore = resCore;
-            // LoadDepBundle();
         }
 
-        private void Retain()
+        internal void Retain()
         {
             _ref++;
         }
 
-        private void Release()
+        internal void Release()
         {
-            _ref--;
-        }
-
-        // private void LoadDepBundle(bool isRoot = false)
-        // {
-        //     this.isRoot = isRoot;
-        //     //相对路径
-        //     var allDependencies = _manifest.GetAllDependencies(_filePath);
-        //     foreach (var v in allDependencies)
-        //     {
-        //         
-        //         
-        //         
-        //         
-        //         //双方引用数+1
-        //         Bundle bundle = _resCore.TyrGetBundle(v);
-        //         if (bundle == null)
-        //         {
-        //             bundle = new Bundle(_manifest, v, _resCore);
-        //             _depBundleDic.Add(v, bundle);
-        //         }
-        //
-        //         //两个bundle双方的引用数+1
-        //         bundle.Retain();
-        //         Retain();
-        //     }
-        //
-        //     _assetBundle = AssetBundle.LoadFromFile(_filePath);
-        // }
-
-        public T TryLoadAsset<T>(string resName) where T : Object
-        {
-            if (_resDic.TryGetValue(resName, out var obj)) return (T)obj;
-            Object assets = _assetBundle.LoadAsset<T>(resName);
-            _resDic.Add(resName, assets);
-            return (T)assets;
-        }
-
-        public Object TryLoadAsset(string resName, Type type)
-        {
-            if (_resDic.TryGetValue(resName, out var obj)) return obj;
-            Object assets = _assetBundle.LoadAsset(resName, type);
-            _resDic.Add(resName, assets);
-            return _assetBundle.LoadAsset(resName, type);
-        }
-
-        /// <summary>
-        /// 是不是能清理自己
-        /// </summary>
-        public bool TryClean(bool unloadAllRes = true)
-        {
-            if (_ref > 0)
+            --_ref;
+            if (this.isRoot)
             {
-                return false;
+                int count = 0;
+                foreach (var dp in depBundleList)
+                {
+                    if (dp.isRoot && dp.isLoaded && dp.depBundleList.Contains(this))
+                    {
+                        count++;
+                    }
+                }
+                if (_ref == count)
+                {
+                    isRoot = false;
+                    _ref -= count;
+                }
+            }
+        }
+
+        private void Check()
+        {
+            if (!isLoaded) throw new Exception("该bundle没有被加载");
+        }
+
+        internal void LoadBundle(bool isRoot = false)
+        {
+            this.isRoot = isRoot;
+            _assetBundle ??= Options.LoadBundle(bundleCfg.subFilePath);
+        }
+
+        public Object LoadAsset(string objFilePath, Type type)
+        {
+            Check();
+            if (_resCacheDic.ContainsKey(objFilePath))
+            {
+                return _resCacheDic[objFilePath];
+            }
+            Object obj = _assetBundle?.LoadAsset(objFilePath, type);
+            if (obj == null)
+            {
+#if UNITY_EDITOR
+                Debug.LogError("加载的物体为空");
+#endif
+                return null;
             }
 
-            _assetBundle.Unload(unloadAllRes);
+            _resCacheDic.Add(objFilePath, obj);
+            return obj;
+        }
+
+        public T LoadAsset<T>(string objName) where T : Object
+        {
+            Check();
+            return _assetBundle?.LoadAsset<T>(objName);
+        }
+
+        public bool TryClean(bool unloadAllLoadedObjects = true)
+        {
+            if (_ref > 0) return false;
+            //卸载全部资源
+            _assetBundle.Unload(unloadAllLoadedObjects);
             _assetBundle = null;
-            foreach (var vBundle in _depBundleDic.Values)
-            {
-                vBundle.Release();
-                vBundle.TryClean();
-            }
-
-            _depBundleDic.Clear();
-            _depBundleDic = null;
-            _resDic.Clear();
-            _resDic = null;
-            return true;
-        }
-
-        /// <summary>
-        /// 直接销毁该bundle
-        /// </summary>
-        public void Dispose(bool unloadAllRes = true)
-        {
+            _resCacheDic.Clear();
             _ref = 0;
-            TryClean(unloadAllRes);
+            return true;
         }
     }
 }
